@@ -10,8 +10,11 @@ export async function middleware(req: NextRequest) {
 
   // If token is not available, redirect to sign-in
   if (!token) {
-    const signInUrl = new URL('/signin', req.url);
-    return NextResponse.redirect(signInUrl);
+    // Make sure not to redirect if already on the sign-in or OAuth routes
+    if (!req.url.includes('/signin') && !req.url.includes('/api/auth')) {
+      const signInUrl = new URL('/signin', req.url);
+      return NextResponse.redirect(signInUrl);
+    }
   }
 
   return NextResponse.next();
@@ -19,5 +22,5 @@ export async function middleware(req: NextRequest) {
 
 // Define the paths that will be protected by this middleware
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)",'/dashboard', ]
+  matcher: ["/dashboard",]
 };

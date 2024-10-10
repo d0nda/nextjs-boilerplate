@@ -10,6 +10,8 @@ import type { NextAuthConfig } from "next-auth";
 
 export const authConfig = {
   adapter: PrismaAdapter(prisma),
+  secret: process.env.AUTH_SECRET,
+  trustHost: true,
   providers: [
     Resend({
       apiKey: process.env.AUTH_RESEND_KEY,
@@ -29,11 +31,10 @@ export const authConfig = {
   },
   callbacks: {
     async session({ session, token, user }) {
-      session.user.id = user?.id ?? token?.sub;  // Fallback if user.id is undefined
+      session.user.id = user?.id ?? token?.sub;
       return session;
     },
   },
-  secret: process.env.AUTH_SECRET,
   pages: {
     signIn: '/signin',
     error: '/error',
