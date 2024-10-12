@@ -1,16 +1,19 @@
-NextJs - BoilerPlate
 
-# NextJs 14 App Router Boiler Plate.
+# NextJs 14 App Router Boiler Plate
 
 ## Next-Auth - Authentication
-## Prisma - ORM 
+
+## Prisma - ORM
+
 ## Supabase - Database
+
 ## Resend - Email
+
 ## PayPal - Payment
+
 ## Tailwind - CSS Framework
+
 ## Shadcn/ui - Ui
-
-
 
 First, run the development server:
 

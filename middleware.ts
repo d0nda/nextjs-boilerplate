@@ -1,11 +1,14 @@
-import { NextResponse } from 'next/server';
-import { getToken } from 'next-auth/jwt';
-import type { NextRequest } from 'next/server';
+import { authConfig } from './auth.config';
+import NextAuth from 'next-auth';
+//import { NextRequest, NextResponse } from 'next/server';
+//import { getToken } from 'next-auth/jwt';
+
+export default NextAuth(authConfig).auth;
 
 // Secret for JWT
-const secret = process.env.AUTH_SECRET;
+//const secret = process.env.AUTH_SECRET;
 
-export async function middleware(req: NextRequest) {
+/*export async function middleware(req: NextRequest) {
   const token = await getToken({ req, secret });
 
   // If token is not available, redirect to sign-in
@@ -19,8 +22,9 @@ export async function middleware(req: NextRequest) {
 
   return NextResponse.next();
 }
-
-// Define the paths that will be protected by this middleware
+*/
 export const config = {
-  matcher: ["/dashboard",]
+  // https://nextjs.org/docs/app/building-your-application/routing/middleware#matcher
+  matcher: ['/((?!api|_next/static|_next/image|.*\\.png$).*)'],
 };
+

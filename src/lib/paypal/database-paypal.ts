@@ -1,5 +1,5 @@
 // lib/database-paypal.ts
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/prisma/prisma';
 import { UserProfile, SubscriptionStatus } from '@/lib/types';
 
 export const updateUserSubscription = async (
